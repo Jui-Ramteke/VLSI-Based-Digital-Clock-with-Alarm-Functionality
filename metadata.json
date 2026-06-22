@@ -1,0 +1,6 @@
+{
+  "name": "VLSI Digital Clock & Testbench",
+  "description": "An interactive VLSI course companion and virtual FPGA board for simulating a parameterizable digital clock alignment, debouncers, 7-segment multiplexers, testbenches, and synthesis scripts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

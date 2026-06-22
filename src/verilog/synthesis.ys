@@ -1,0 +1,43 @@
+# =============================================================================
+# Yosys Synthesis Script for VLSI-Based Digital Clock
+# Project Part:  RTL-to-Gate Synthesis and Logic Optimization Flow.
+# Target:        Generic Cell Library Mapping and Area Report Generation.
+# =============================================================================
+
+# 1. Read Verilog HDL source files
+read_verilog debounce.v
+read_verilog seven_seg_mux.v
+read_verilog digital_clock.v
+
+# 2. Perform syntax review and error parsing
+hierarchy -check -top digital_clock
+
+# 3. Translate high-level expressions, loops, and conditions to logic structures
+proc; 
+opt;
+
+# 4. Map digital structures to memory and arithmetic hardware elements
+fsm;
+memory;
+opt;
+
+# 5. Extract and optimize arithmetic chains (adders, multiplexers, comparators)
+techmap;
+opt;
+
+# 6. Map register states to generic D-Type Flip-Flops (D_FFs)
+dfflegalize -cell $_DFF_P_ 01
+opt;
+
+# 7. Map remaining logic blocks into generic dual-input gates (NAND, NOR, AND, OR, NOT)
+abc -g simple
+opt;
+
+# 8. Filter unconnected nodes and generate synthesized output report
+clean
+
+# 9. Write out synthesized Gate-Level Netlist (Structural Verilog)
+write_verilog -noattr digital_clock_synth.v
+
+# 10. Output structural statistics of final cell count and gate-area
+stat
