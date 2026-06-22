@@ -47,21 +47,32 @@ All Verilog hardware modules are modular, strictly synchronous, and located unde
 The front-end dashboard acts as a professional digital IC engineering workspace, divided into five specialized tabs:
 
 ### 1. Virtual FPGA Board (Digilent Basys-3 Emulation)
+![Basys-3 Emulation Interface](images/2.jpg)
 * **Vector Glowing Displays:** Six high-contrast, neon SVG 7-segment numerical digits that dynamically light up based on active cathode codes.
 * **Scanning Pace Controller:** Toggle multiplexing frequency between standard **POV Merged (1.0 kHz)** for a steady glow, and **Slow Scan (20 Hz)** to watch the scanning anode sweep from digit to digit in slow-motion—an excellent educational visualizer.
 * **Tactile Bounce Switch:** Inject high-frequency mechanical bounces on button click releases to watch the synchronizer filter out chatter on the logic trace in real-time.
 * **Pacing Selectors:** Control simulation speed with Real-time Seconds, Accelerated Transitions (fast-forward to check rollovers), or Manual Step (debug cycle-by-cycle).
 
 ### 2. Logic Analyzer (GTKWave Emulation)
+![Waveform Logic Analyzer](images/3.png)
+![Waveform Zoomed View](images/4.png)
 An interactive vertical timing waveform viewer plotting real-time logic flows. Tracks system clock oscillations (`clk`), resets (`rst_n`), raw noisy button presses, settled debounced pulses (`btn_mode_deb`), FSM code states, and anode sweeps. Hover or scroll to inspect binary values at any cycle tap.
 
-### 3. RTL Gate Schematics
+### 3. Verilog Source Files
+![Verilog Source Viewer](images/5.png)
+A dedicated workspace directory to view the raw, synthesizable RTL source code that drives the underlying TypeScript simulation engine.
+
+### 4. RTL Gate Schematics
+![Gate Level Schematics](images/6.png)
+![Gate Schematics Detail](images/7.png)
 A block diagram flow tracing logical interconnections between input pads, synchronizers, timekeepers, comparators, BCD formatters, and multiplex display drivers. Clicking any block highlights its active sub-bus ports and presents the corresponding synthesizable Verilog HDL code snippet in the side panel.
 
-### 4. Verification Testbench Terminal
+### 5. Verification Testbench Terminal
+![Testbench Console](images/8.png)
 An animated command-line console running `iverilog` and mock `vvp` simulation tasks. Executing the testbench outputs real-time compiler diagnostics, cycles through the 7 self-checking logic tests, and prints a `TESTBENCH PASSED: 0 errors` confirmation before initializing the waveform analyzer trace.
 
-### 5. Lab Work Notebook
+### 6. Lab Work Notebook
+![Course Handbook](images/9.png)
 A built-in educational resource detailing key digital design guidelines. Covers Gated Clocks, Metastability mathematics, MTBF (Mean Time Between Failures), POV multiplex equations, and how synthesizers convert conditional blocks into netlists.
 
 ---
